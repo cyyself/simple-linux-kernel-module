@@ -88,11 +88,10 @@ static int __init myramdisk_init(void) {
 	}
 	else {
 		printk(KERN_INFO "register_blkdev myramdisk succeed, major = %d.\n",myramdisk_major);
+		int i;
+		for (i=0;i<myramdisk_ndev;i++) 
+			myramdisk_add_device(&myramdisk_devs[i],i*16);
 	}
-
-	int i;
-	for (i=0;i<myramdisk_ndev;i++) 
-		myramdisk_add_device(&myramdisk_devs[i],i*16);
 	return 0;
 }
 
