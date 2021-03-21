@@ -60,7 +60,7 @@ static const struct blk_mq_ops myramdisk_mq_ops = {
 static void myramdisk_add_device(struct myramdisk_dev *dev,int first_minor) {
 	//alloc memory for ramdisk data
 	dev->data = vmalloc(myramdisk_dev_size);
-	printk(KERN_INFO "alloc memory ok\n");
+	printk(KERN_INFO "alloc memory ok addr=%llx\n",dev->data);
 	//init mq
 	dev->queue = blk_mq_init_sq_queue(&dev->tag_set,&myramdisk_mq_ops,128,BLK_MQ_F_SHOULD_MERGE);
 	blk_queue_logical_block_size(dev->queue,KERNEL_SECTOR_SIZE);
