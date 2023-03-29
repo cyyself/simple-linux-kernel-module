@@ -16,10 +16,12 @@ void test_fault(off_t fault_off) {
     else printf("fault test error!\n");
 }
 
+#define dma_test_t long
+
 void test_dma() {
-    unsigned char test = rand()%256;
-    bar[dma_off_in_bar] = test;
-    volatile unsigned char read = bar[dma_off_in_bar];
+    dma_test_t test = rand();
+    *(volatile dma_test_t*)(&bar[dma_off_in_bar]) = test;
+    dma_test_t read = *(volatile dma_test_t*)(&bar[dma_off_in_bar]);
     if (test == read) printf("dma test ok!\n");
     else printf("Read after write error! Expect %x found %x\n", test, read);
 }
