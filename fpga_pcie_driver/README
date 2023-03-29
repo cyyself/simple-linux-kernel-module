@@ -1,0 +1,5 @@
+# fpd (FPGA PCIe Driver)
+
+## Hardware Setup
+
+Xilinx FPGA with AXI Bridge IP or PCIe XDMA in bridge Mode. Set BAR0 to 256MB and directly connect the M_AXI and S_AXI Port.
